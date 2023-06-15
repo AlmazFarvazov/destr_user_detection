@@ -1,0 +1,6 @@
+myenv/
+data.csv
+__pycache__/
+.vscode
+.history
+tmp/

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Processing Result</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Является ли пользователь деструктивным</a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <form class="mt-5" method="POST">
+                    <div class="form-group">
+                        <label for="url">Enter URL:</label>
+                        <input type="text" class="form-control" id="url" name="url" placeholder="Вставьте ссылку на пост" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Process</button>
+                </form>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <div class="card mt-5">
+                    {% if data %}
+                    <div class="card-body">
+                        {% if data.destructive %}
+                        <h2 class="text-center text-danger">The user is destructive</h2>
+                        {% else %}
+                        <h2 class="text-center text-success">The user is not destructive</h2>
+                        {% endif %}
+
+                        <h1 class="text-center">{{ data.name }}</h1>
+                        <p class="text-center">Profile Rating: {{ data.profile_rating }}</p>
+                        <p class="text-center">Registration Date: {{ data.reg_date }}</p>
+                        <p class="text-center">Post Rating: {{ data.post_rating }}</p>
+                        <p class="text-center">Post Text: {{ data.post_text }}</p>
+                        <p class="text-center">Publish Date: {{ data.publish_date }}</p>
+
+                        <h2 class="text-center">Posts</h2>
+                        {% for post in data.posts %}
+                            <div>
+                                <p>Post Text: {{ post.post_text }}</p>
+                                <p>Post Rating: {{ post.post_rating }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
